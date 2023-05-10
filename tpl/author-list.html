@@ -1,0 +1,26 @@
+<ul class="alert" tpl-if="$saved">
+    <li>Author saved successfully!</li>
+</ul>
+<ul class="alert" tpl-if="$deleted">
+    <li>Author deleted!</li>
+</ul>
+<table>
+    <tr>
+        <td><b>Eesnimi</b></td>
+        <td><b>Perekonnanimi</b></td>
+        <td><b>Hinne</b></td>
+    </tr>
+    <tpl tpl-if="$authors != []">
+        <tpl tpl-foreach="$authors as $author">
+            <tr>
+                <td><a href="?cmd=author-edit-page&id={{ $author->id }}">{{ $author->first_name }}</a></td>
+                <td>{{ $author->last_name }}</td>
+                <td class="score-empty">
+                    <tpl tpl-foreach="range(1, 5) as $rating" tpl-trim-contents>
+                        <span tpl-class="score-filled if $author->grade >= $rating">&#9733;</span>
+                    </tpl>
+                </td>
+            </tr>
+        </tpl>
+    </tpl>
+</table>

@@ -1,0 +1,40 @@
+<ul class="alert" tpl-if="$saved">
+    <li>Raamat salvestatud</li>
+</ul>
+<ul class="alert" tpl-if="$deleted">
+    <li>Raamat kustutatud</li>
+</ul>
+<table>
+    <tr>
+        <td><b>Pealkiri</b></td>
+        <td><b>Autorid</b></td>
+        <td><b>Hinne</b></td>
+        <td><b>Loetud</b></td>
+    </tr>
+    <tpl tpl-if="$books != []">
+        <tpl tpl-foreach="$books as $book">
+            <tr>
+                <td><a href="?cmd=book-edit-page&id={{ $book->id }}">{{ $book->title }}</a></td>
+                <td>
+                    <tpl tpl-foreach="$book->author1_name as $author1">
+                        {{ $author1 }},
+                    </tpl>
+                    <tpl tpl-foreach="$book->author2_name as $author2">
+                        {{ $author2 }}
+                    </tpl>
+                </td>
+                <td class="score-empty">
+                    <tpl tpl-foreach="range(1, 5) as $rating" tpl-trim-contents>
+                        <span tpl-class="score-filled if $book->grade >= $rating">&#9733;</span>
+                    </tpl>
+                </td>
+                <tpl tpl-if="$book->read === 0">
+                    <td>Ei</td>
+                </tpl>
+                <tpl tpl-if="$book->read === 1">
+                    <td>Jah</td>
+                </tpl>
+            </tr>
+        </tpl>
+    </tpl>
+</table>

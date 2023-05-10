@@ -1,0 +1,32 @@
+<ul class="alert" tpl-if="$error">
+    <li>{{ $error }}</li>
+</ul>
+<table>
+    <form method="post">
+        <tr>
+            <td>Eesnimi:</td>
+            <td><input type="text" name="firstName" value="{{ $first_name }}"></td>
+        </tr>
+        <tr>
+            <td>Perekonnanimi:</td>
+            <td><input type="text" name="lastName" value="{{ $last_Name }}"></td>
+        </tr>
+        <tr>
+            <td>Hinne</td>
+            <td>
+                <tpl tpl-foreach="range(1, 5) as $rating">
+                    <input type="radio"
+                           id="grade{{ $rating }}"
+                           name="grade"
+                           value="{{ $rating }}"
+                           tpl-checked="$rating === $author->grade">
+                    <label for="grade{{ $rating }}">{{ $rating }}</label>
+                </tpl>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td align="right"><input type="submit" value="Salvesta!" name="submitButton"></td>
+        </tr>
+    </form>
+</table>

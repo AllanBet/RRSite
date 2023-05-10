@@ -1,0 +1,54 @@
+<ul class="alert" tpl-if="$error">
+    <li>{{ $error }}</li>
+</ul>
+<table>
+    <form method="post">
+        <tr>
+            <td>Pealkiri:</td>
+            <td><input type="text" name="title" value="{{ $title }}"></td>
+        </tr>
+        <tr>
+            <td>Author 1:</td>
+            <td>
+                <select name="author1" id="author1">
+                    <option></option>
+                    <tpl tpl-foreach="$authors as $author">
+                        <option value="{{ $author->id }}">{{ $author->first_name }} {{ $author->last_name }}</option>
+                    </tpl>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Author 2:</td>
+            <td>
+                <select name="author2" id="author2">
+                    <option></option>
+                    <tpl tpl-foreach="$authors as $author">
+                        <option value="{{ $author->id }}">{{ $author->first_name }} {{ $author->last_name }}</option>
+                    </tpl>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Hinne:</td>
+            <td>
+                <tpl tpl-foreach="range(1, 5) as $rating">
+                    <input type="radio"
+                           id="grade{{ $rating }}"
+                           name="grade"
+                           value="{{ $rating }}"
+                           tpl-checked="$mark === $book->grade">
+                    <label for="grade{{ $rating }}">{{ $rating }}</label>
+                </tpl>
+            </td>
+        </tr>
+        <tr>
+            <td>Loetud:</td>
+            <td><input type="checkbox" name="isRead" value="1" tpl-checked="$isRead"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td align="right"><input type="submit" value="Salvesta!" name="submitButton"></td>
+        </tr>
+    </form>
+</table>

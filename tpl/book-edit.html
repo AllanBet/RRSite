@@ -1,0 +1,59 @@
+<form method="post">
+    <table>
+        <tr>
+            <td>Pealkiri:</td>
+            <td><input type="text" name="title" value="{{ $title }}"></td>
+        </tr>
+        <tr>
+            <td>Author 1:</td>
+            <td>
+                <select name="author1" id="author1">
+                    <tpl tpl-if="$book->author1_name[0]">
+                        <option value="{{ $author1->id }}">{{ $book->author1_name[0] }}</option>
+                    </tpl>
+                    <option></option>
+                    <tpl tpl-foreach="$authors as $author">
+                        <option value="{{ $author->id }}">{{ $author->first_name }} {{ $author->last_name }}</option>
+                    </tpl>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Author 2:</td>
+            <td>
+                <select name="author2" id="author2">
+                    <tpl tpl-if="$book->author2_name[0]">
+                        <option value="{{ $author2->id }}">{{ $book->author2_name[0] }}</option>
+                    </tpl>
+                    <option></option>
+                    <tpl tpl-foreach="$authors as $author">
+                        <option value="{{ $author->id }}">{{ $author->first_name }} {{ $author->last_name }}</option>
+                    </tpl>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Hinne:</td>
+            <td>
+                <tpl tpl-foreach="range(1, 5) as $mark">
+                    <input type="radio"
+                           id="grade{{ $mark }}"
+                           name="grade"
+                           value="{{ $mark }}"
+                           tpl-checked="$mark === $book->grade">
+                    <label for="grade{{ $mark }}">{{ $mark }}</label>
+                </tpl>
+            </td>
+        </tr>
+        <tr>
+            <td>Loetud:</td>
+            <td><input type="checkbox" name="isRead" value="1" tpl-checked="$read"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td align="right"><input type="submit" value="Salvesta!" name="submitButton">
+                <input type="submit" name="deleteButton" value="Kustuta!"/></td>
+
+        </tr>
+    </table>
+</form>

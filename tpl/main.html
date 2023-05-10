@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ $pageTitle }}</title>
+    <link rel="stylesheet" type="text/css" href="../../../kool/4.%20semester/VeebitehnoTru/icd0007/style/style.css">
+</head>
+<body id="{{ $pageID }}">
+<table>
+    <tr>
+        <td>
+            <nav>
+                <ul>
+                    <li><a href="?cmd=book-list-page" id="book-list-link">Raamatud</a></li>
+                    <li><a href="?cmd=book-form-page" id="book-form-link">Lisa raamat</a></li>
+                    <li><a href="?cmd=author-list-page" id="author-list-link">Autorid</a></li>
+                    <li><a href="?cmd=author-form-page" id="author-form-link">Lisa autor</a></li>
+                </ul>
+            </nav>
+            <main tpl-include="{{ $path }}"></main>
+            <footer>
+                <ul>
+                    <li>ICD0007 N&auml;idisrakendus</li>
+                </ul>
+            </footer>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
